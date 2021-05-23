@@ -96,8 +96,13 @@ export default class Login extends React.Component {
        }
        new Services().loginUser(data).then((result) => {
             console.log(result.data);
+            this.setState({ snackmsg: "login successfull" })
+            this.setState({ show: true })
+            this.props.history.push('/dashboard');
         }).catch((error) => {
             console.log(error);
+            this.setState({ snackmsg: "login error" })
+            this.setState({ show: true })
         })
    }
    else{
@@ -134,9 +139,7 @@ export default class Login extends React.Component {
                         </div>
                         <div className="notComp">Not your computer? Use Guest mode to sign in privately.<br></br><a className="link" href="https://support.google.com/chrome/answer/6130773?hl=en-GB" >Learn more</a></div>
                             <div className="forget">Forget password?</div>
-                            <div className="createaccount">
-                                    <a href="/Registration">Create Account</a>
-                            </div>
+                            <div className="createaccount" onClick={()=>{this.props.history.push('/')}}>Create Account</div>
                             <div className="inline__button">
                             <Button variant="outlined" size="small" onClick={this.submit}>Sign in</Button>
                             <Snackbar

@@ -7,8 +7,12 @@ import { Link } from 'react-router-dom';
 import Snackbar from "@material-ui/core/Snackbar";
 import { Slide } from '@material-ui/core';
 import Services from "../../Services/UserService";
-
+import MuiAlert from '@material-ui/lab/Alert';
+const Alert = (props) => {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 export default class Registration extends React.Component {
+
     constructor(probs) {
         super(probs)
         this.state = {
@@ -149,8 +153,16 @@ export default class Registration extends React.Component {
                 "password": this.state.password
             }
             new Services().registerUser(data)
-            .then(res =>{console.log(res);})
-            .catch((e)=>{console.log(e);})
+            .then(res =>{console.log(res);
+                this.setState({ snackmsg: "Registrationn succeccfull" })
+                this.setState({ show: true })
+                this.props.history.push('/login');
+            })
+            .catch((e)=>{console.log(e);
+                this.setState({ snackmsg: "Registration error" })
+                this.setState({ show: true })
+            });
+            // window.location.href = "http://localhost:3000/login";
         }
 
         else {
@@ -196,7 +208,7 @@ export default class Registration extends React.Component {
                                     <label htmlFor="radio"> Show password</label>
                                 </div>
                                 <div className="inline__buttons">
-                                    <Link to="/">Sign in instead</Link>
+                                    <Link to="/login">Sign in instead</Link>
                                     <Button variant="outlined" onClick={this.submit} size="small">Submit</Button>
                                     <Snackbar
                                         anchorOrigin={{
@@ -209,6 +221,10 @@ export default class Registration extends React.Component {
                                         onClose={this.handleClose}
                                         message={this.state.snackmsg}
                                     />
+                                    {/* <Alert onClose={this.handleClose} severity="success">
+                                      This is a success message!
+                                     </Alert>
+                                    </Snackbar> */}
                                 </div>
                             </div>                            
                             

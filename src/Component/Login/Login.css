@@ -107,4 +107,9 @@
     margin-left: 10%;
     margin-top: 4%;
     font-size: 14px;
+    color: blue;
+}
+
+.createaccount:hover{
+    cursor: pointer;
 }
