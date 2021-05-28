@@ -6,11 +6,21 @@ const axiosService = new Axios()
 export default class NoteService {
     baseUrl = "http://fundoonotes.incubation.bridgelabz.com/api/"
 
-    addNote = (data) => {
-        return axiosService.postMethod(`${this.baseUrl}notes/addNotes`, data)
+    addNote = (data, token) => {
+        return axiosService.postMethod(`${this.baseUrl}notes/addNotes`, data, {
+            headers: {'Authorization': token}
+        })
     }
 
-    getNote = () => {
-        return axiosService.getMethod(`${this.baseUrl}notes/getNotesList`)
+    getNote = (token) => {
+        return axiosService.getMethod(`${this.baseUrl}notes/getNotesList`, {
+            headers: {'Authorization': token}
+        })
+    }
+
+    updateNote = (data, token) => {
+        return axiosService.postMethod(`${this.baseUrl}notes/updateNotes`, data, {
+            headers: {'Authorization': token}
+        })
     }
 }

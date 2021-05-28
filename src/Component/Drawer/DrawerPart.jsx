@@ -10,7 +10,7 @@ import {
     Typography,
 } from '@material-ui/core'
 import React, { Component } from 'react'
-import './Dashboard.css'
+import '../../Pages/Dashboard/Dashboard.css'
 import Keep from "../../Component/Assets/keep.png";
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -26,10 +26,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import NotificationsNoneRoundedIcon from '@material-ui/icons/NotificationsNoneRounded';
-import GetNote from '../../Component/GetNote/GetNote'
+import GetNote from '../GetNote/GetNote'
 import { Route, Router, Switch } from 'react-router';
-import Appbar from '../../Component/Appbar/Appbar';
-import DrawerPart from '../../Component/Drawer/DrawerPart';
+import Appbar from '../Appbar/Appbar';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -83,7 +82,7 @@ const styles = theme => ({
     },
 })
 
-class Dashboard extends Component {
+class DrawerPart extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -93,12 +92,11 @@ class Dashboard extends Component {
     }
 
     handleDrawerOpen = () => {
-        this.setState({ open: true });
-        console.log("open the Drawer", this.state.open);
+        this.props.drawerOpen()
     };
 
     handleDrawerClose = () => {
-        this.setState({ open: false });
+        this.props.drawerClose()
         console.log("in close button");
     };
 
@@ -125,19 +123,52 @@ class Dashboard extends Component {
         // window.location.href = 'http://localhost:3000/dashboard'
     }
 
-
     render() {
         const { classes } = this.props;
         console.log(this.state.open);
         return (
             <div className="root">
                 <CssBaseline />
-                <Appbar/>
-                {/* <DrawerPart/> */}
-                <GetNote/>
+                <Drawer className={this.props.open ? classes.drawer : classes.drawerClose}
+                    open={this.props.open}
+                    variant="permanent"
+                    classes={{
+                        paper: this.props.open ? classes.drawerPaper : classes.drawerPaperClose,
+                    }}
+                    anchor="left"
+                >
+                    <div className="toolbar">
+                        <IconButton onClick={this.handleDrawerClose}>
+                        </IconButton>
+                    </div>
+                    <List onMouseEnter={this.handleDrawerOpen} onMouseLeave={this.handleDrawerClose}>
+                        
+                        <ListItem className={classes.ListItem} onClick={this.notes}>
+                            <ListItemIcon><EmojiObjectsOutlinedIcon /></ListItemIcon>
+                            <ListItemText primary="Notes" />
+                        </ListItem>
+                        <ListItem className={classes.ListItem} >
+                            <ListItemIcon><NotificationsNoneRoundedIcon /></ListItemIcon>
+                            <ListItemText primary="Reminders" />
+                        </ListItem>
+                         <ListItem className={classes.ListItem} >
+                            <ListItemIcon><EditOutlinedIcon /></ListItemIcon>
+                            <ListItemText primary="Edit Labels" />
+                        </ListItem>
+                        <ListItem className={classes.ListItem} >
+                            <ListItemIcon><ArchiveOutlinedIcon /></ListItemIcon>
+                            <ListItemText primary="Archive" />
+                        </ListItem>
+                        <ListItem className={classes.ListItem} >
+                            <ListItemIcon><DeleteOutlinedIcon /></ListItemIcon>
+                            <ListItemText primary="Trash" />
+                        </ListItem>
+                        
+                    </List>
+                </Drawer>
             </div>
         )
     }
 }
 
-export default withStyles(styles)(Dashboard)
+export default withStyles(styles)(DrawerPart)

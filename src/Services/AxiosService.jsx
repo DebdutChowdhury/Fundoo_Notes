@@ -1,12 +1,11 @@
 import axios from 'axios'
 
 export default class AxiosService {
-    postMethod = (url, data) => {
-        return axios.post(url, data)
+    postMethod = (url, data, isHeaderRequired = false) => {
+        return axios.post(url, data, isHeaderRequired)
     }
 
-    getMethod = (url) => {
-        return axios.get(url)
+    getMethod = (url, isHeaderRequired = false) => {
+        return axios.get(url, isHeaderRequired)
     }
-
 }

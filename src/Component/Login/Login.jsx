@@ -3,7 +3,9 @@ import './Login.css'
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core'
 import Snackbar from '@material-ui/core/Snackbar';
-import Services from "../../Services/UserService";
+import UserService from "../../Services/UserService";
+
+const service = new UserService();
 
 export default class Login extends React.Component {
     constructor(probs){
@@ -27,7 +29,6 @@ export default class Login extends React.Component {
            return;
        }
        this.setState({ show: false })
-       // setOpen(false);
    };
    handlechange =(e)=>{
        let name = e.target.name;
@@ -94,12 +95,18 @@ export default class Login extends React.Component {
            "password": this.state.password,
            "server": "advance"
        }
-       new Services().loginUser(data).then((result) => {
-            console.log(result.data);
-            this.setState({ snackmsg: "login successfull" })
-            this.setState({ show: true })
-            this.props.history.push('/dashboard');
-        }).catch((error) => {
+       service.loginUser(data).then((result) => {
+           localStorage.setItem('Token', result.data.id);
+           localStorage.setItem('FirstName', result.data.firstName);
+           localStorage.setItem('LastName', result.data.lastName);
+           localStorage.setItem('Email', result.data.email);
+
+           localStorage.setItem('userDetails', JSON.stringify(result.data))
+           console.log(result.data.id);
+           this.setState({ snackmsg: "login successfull" })
+           this.setState({ show: true })
+           this.props.history.push('/dashboard');
+       }).catch((error) => {
             console.log(error);
             this.setState({ snackmsg: "login error" })
             this.setState({ show: true })

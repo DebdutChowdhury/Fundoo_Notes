@@ -6,11 +6,11 @@ import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Snackbar from "@material-ui/core/Snackbar";
 import { Slide } from '@material-ui/core';
-import Services from "../../Services/UserService";
+import UserServices from "../../Services/UserService";
 import MuiAlert from '@material-ui/lab/Alert';
-const Alert = (props) => {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+
+const service = new UserServices()
+
 export default class Registration extends React.Component {
 
     constructor(probs) {
@@ -52,7 +52,6 @@ export default class Registration extends React.Component {
             return;
         }
         this.setState({ show: false })
-        // setOpen(false);
     };
     validationCheck = () => {
         this.setState({
@@ -152,8 +151,8 @@ export default class Registration extends React.Component {
                 "service": "advance",
                 "password": this.state.password
             }
-            new Services().registerUser(data)
-            .then(res =>{console.log(res);
+            service.registerUser(data).then((result) => {
+                console.log(result);
                 this.setState({ snackmsg: "Registrationn succeccfull" })
                 this.setState({ show: true })
                 this.props.history.push('/login');
@@ -162,7 +161,6 @@ export default class Registration extends React.Component {
                 this.setState({ snackmsg: "Registration error" })
                 this.setState({ show: true })
             });
-            // window.location.href = "http://localhost:3000/login";
         }
 
         else {
