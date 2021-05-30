@@ -4,6 +4,7 @@ import BrushIcon from '@material-ui/icons/Brush';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import { InputBase } from '@material-ui/core';
 import NoteService from '../../Services/NoteService';
+import Icon from '../Icon/Icon';
 
 const noteService = new NoteService();
 
@@ -83,6 +84,7 @@ export default class CreateNote extends Component {
                             />
                         <div>
                             <div className="enclose">
+                                <Icon/>
                                 <div class="inp">
                                     <input type="button" onClick={this.close} value="Close" />
                                 </div>

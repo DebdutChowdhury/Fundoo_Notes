@@ -2,6 +2,7 @@ import { Dialog, InputBase } from '@material-ui/core';
 import React, { Component } from 'react';
 import Pin from '../Assets/pin.jpeg';
 import NoteService from '../../Services/NoteService';
+import Icon from '../Icon/Icon';
 
 const noteService = new NoteService();
 
@@ -50,17 +51,22 @@ export default class DisplayNotes extends Component {
             description: this.state.description,
             noteId: this.state.noteId
         }
-        console.log(data.noteId);
+        console.log(data.description);
         if(data.title !== "" && data.description !== ""){
             noteService.updateNote(data, token).then((result) => {
-                this.props.updateNote();
-                {this.handleClose()}
                 console.log(result);
+                // this.props.updateNote();
+                window.location.reload();
+                {this.handleClose()}
             })
             .catch((err) => {
                 console.log(err);
             })
         }
+    }
+
+    setColor = (colorValue) => {
+        this.setState({color: colorValue})
     }
 
     render() {
@@ -79,7 +85,7 @@ export default class DisplayNotes extends Component {
                                     </div>
                                     <p>{value.description}</p>
                                 </div>
-                                {/* Icons */}
+                                <Icon Notes={value} setColor={this.setColor}/>
                             </div>
                         )
                     })}
@@ -108,7 +114,7 @@ export default class DisplayNotes extends Component {
                             inputProps={{ 'aria-label': 'Title ' }}
                         />
                         <div className="enclose">
-                            {/* Icon */}
+                            <Icon/>
                             <div className="inp">
                                 <input type="button" onClick={(e)=> this.updateNote(e)} value="close"/>
                             </div>

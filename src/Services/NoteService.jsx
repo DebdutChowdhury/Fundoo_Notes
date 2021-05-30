@@ -23,4 +23,28 @@ export default class NoteService {
             headers: {'Authorization': token}
         })
     }
+
+    archieveNote = (data, token) => {
+        return axiosService.postMethod(`${this.baseUrl}notes/archiveNotes`, data, {
+            headers:{
+                'Authorization':token,
+            }
+        })
+    }
+
+    colorChange = (data, token) => {
+        return axiosService.postMethod(`${this.baseUrl}notes/changesColorNotes`, data, {
+            headers: {
+                'Authorization':token,
+            }
+        })
+    }
+
+    deleteForeverNote = (data, token) => {
+        return axiosService.postMethod(`${this.baseUrl}notes/deleteForeverNotes`, data, {
+            headers: {
+                'Authorization':token,
+            }
+        })
+    }
 }
