@@ -7,6 +7,7 @@ import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import NoteService from '../../Services/NoteService';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { colors, Menu, MenuItem } from '@material-ui/core';
+import './Icon.css'
 
 
 const noteService = new NoteService();
@@ -50,7 +51,7 @@ export default class Icon extends Component {
         let token = localStorage.getItem("Token")
         let data = {
             noteIdList: [value.id],
-            color: colorValue
+            color: colorValue,
         }
         noteService.colorChange(data, token).then((result)=> {
             console.log(data);
@@ -69,7 +70,7 @@ export default class Icon extends Component {
             isDelete: true,
             noteIdList: [value.id]
         }
-        noteService.deleteForeverNote(data,token).then((result) => {
+        noteService.deleteNote(data,token).then((result) => {
             console.log(result);
             window.location.reload();
             this.handleClose();
@@ -82,13 +83,17 @@ export default class Icon extends Component {
         this.setState({anchorEl:null})
     }
 
+    reminderPop = (anchor) => {
+        this.props.data(anchor)
+    }
+
     render() {
         const colors = [ ' #d7aefb', '#a7ffeb', '#e8eaed', 
         '#aecbfa', '#e6c9a8', '#fdcfe8', '#f28b82', '#aecbfa'];
         return (
             <>
                 <div className="inlineicons">
-                    <AddAlertOutlinedIcon/>
+                    <AddAlertOutlinedIcon onClick={this.reminderPop}/>
                     <PersonAddOutlinedIcon/>
                     <ColorLensOutlinedIcon onClick={this.changeShow}/>
                     <AddPhotoAlternateOutlinedIcon/>

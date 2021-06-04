@@ -153,6 +153,9 @@
     .accountbox{
       height: 100vh;
     }  
+    .image{
+      display: '';
+    }
   }
 
 @media only screen and (max-width: 600px) {
@@ -180,6 +183,9 @@
 .fn{
   width: 100%;
 }
+.image{
+  display: none;
+}
 }
 @media only screen and (max-width: 360px) {
     .form{
@@ -205,6 +211,9 @@
     }
     .create{
       font-size: 19px;
+    }
+    .image{
+      display: none;
     }
     
 }

@@ -88,6 +88,8 @@ class Appbar extends Component {
         this.state = {
             open: false,
             profile: false,
+            counter:'',
+            heading: 'Keep'
         }
         this.drawerOpen = this.handleDrawerOpen.bind(this)
         this.drawerClose = this.handleDrawerClose.bind(this)
@@ -115,7 +117,7 @@ class Appbar extends Component {
         localStorage.removeItem('Email')
         localStorage.removeItem('LastName')
         localStorage.removeItem('FirstName')
-        this.props.history.push("/login")
+        window.location.href = "http://localhost:3000";
     }
 
     change = () => {
@@ -123,12 +125,17 @@ class Appbar extends Component {
     };
 
     notes = () => {
-        // window.location.href = 'http://localhost:3000/dashboard'
+        // window.location.href = 'http://localhost:3000/dashboard/notes'
     }
 
 
     handleToggle = () => {
         console.log("open");
+    }
+
+    chnageName = (data) => {
+        this.setState({heading:data})
+        this.props.rout(data);
     }
 
     render() {
@@ -156,14 +163,15 @@ class Appbar extends Component {
                         </IconButton>
                         <img src={Keep} alt="" srcset="" />
                         <Typography variant="h6" noWrap>
-                            <span>Keep</span>
+                            {/* <span>Keep</span> */}
+                            {this.state.heading}
                         </Typography>
                         <div className="search">
                             <SearchIcon />
                             <input type="text" aria-label="search" placeholder=" search" />
                         </div>
                         <div className="icons">
-                            <RefreshIcon />
+                            <RefreshIcon/>
                             <ViewStreamIcon />
                             <SettingsOutlinedIcon />
                             <AppsIcon />
@@ -178,7 +186,7 @@ class Appbar extends Component {
                         <input type="button" value="Sign Out" onClick={this.signout} />
                     </div>: null }
                 </div>
-                <DrawerPart open={this.state.open} drawerOpen={this.handleDrawerOpen} drawerClose={this.handleDrawerClose}/>
+                <DrawerPart open={this.state.open} drawerOpen={this.handleDrawerOpen} drawerClose={this.handleDrawerClose} nameChange={this.chnageName} selected={this.state.heading}/>
             </div>
         )
     }

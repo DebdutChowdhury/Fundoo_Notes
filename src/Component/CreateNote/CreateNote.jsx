@@ -12,7 +12,7 @@ export default class CreateNote extends Component {
     constructor(props){
         super(props);
         this.state = {
-            open: false,
+            open: true,
             title: "",
             description: "",
         }
@@ -34,7 +34,8 @@ export default class CreateNote extends Component {
     close = () => {
         let data = {
             title: this.state.title,
-            description: this.state.description
+            description: this.state.description,
+            isArchived:true
         }
 
         this.click();

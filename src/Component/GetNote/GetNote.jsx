@@ -29,10 +29,10 @@ export default class GetNote extends Component {
     render() {
         return (
             <div>
-                <CreateNote updateData={this.getNote}/>
+                {/* <CreateNote updateData={this.getNote}/> */}
                 <DisplayNotes updateNote={this.props.updateNote} NotesArray={this.state.notes}/>
                 {/* <DisplayNotes/> */}
-
+                
             </div>
         )
     }

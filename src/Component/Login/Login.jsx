@@ -88,14 +88,15 @@ export default class Login extends React.Component {
    submit =()=>{
       
        if(this.validationCheck()){
-           this.setState({ snackmsg: "Login sucess" })
            this.setState({ show: true })
        let data = {
            "email": this.state.username,
            "password": this.state.password,
            "server": "advance"
        }
+       console.log(data);
        service.loginUser(data).then((result) => {
+           console.log("Result: ",result);
            localStorage.setItem('Token', result.data.id);
            localStorage.setItem('FirstName', result.data.firstName);
            localStorage.setItem('LastName', result.data.lastName);

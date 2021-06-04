@@ -29,6 +29,8 @@ import NotificationsNoneRoundedIcon from '@material-ui/icons/NotificationsNoneRo
 import GetNote from '../GetNote/GetNote'
 import { Route, Router, Switch } from 'react-router';
 import Appbar from '../Appbar/Appbar';
+import Archive from '../ArchiveNotes/Archive';
+import { BrowserRouter, Link } from 'react-router-dom';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -79,6 +81,35 @@ const styles = theme => ({
         backgroundColor: '#feefc3',
         borderRadius: '0 25px 25px 0',
       },
+      '&:hover':{
+        backgroundColor:"#F6F2F1"
+      },
+      '&::selection':{
+        backgroundColor:"#feefc3"
+      }
+    },
+
+    selectedListItems: {
+        letterSpacing: '.01785714em',
+        fontFamily: 'Google Sans, Roboto, Arial, sans-serif',
+        fontSize: '.875rem',
+        fontWeight:'500',
+        lineHeight:'1.25rem',
+        paddingleft: '24px',
+        color: '#202124',
+        borderRadius: '0 25px 25px 0',
+        backgroundColor: '#feefc3',
+      
+      '&:focus':{
+        backgroundColor: '#feefc3',
+        borderRadius: '0 25px 25px 0',
+      },
+      '&:hover':{
+        backgroundColor:"#F6F2F1"
+      },
+      '&::selection':{
+        backgroundColor:"#feefc3"
+      }
     },
 })
 
@@ -120,7 +151,11 @@ class DrawerPart extends Component {
     };
 
     notes = () => {
-        // window.location.href = 'http://localhost:3000/dashboard'
+        console.log("Notes comming");
+    }
+
+    sendName = (data) => {
+        this.props.nameChange(data)
     }
 
     render() {
@@ -141,28 +176,40 @@ class DrawerPart extends Component {
                         <IconButton onClick={this.handleDrawerClose}>
                         </IconButton>
                     </div>
-                    <List onMouseEnter={this.handleDrawerOpen} onMouseLeave={this.handleDrawerClose}>
+                    <List onMouseEnter={this.handleDrawerOpen} onMouseLeave={this.handleDrawerClose} style={{cursor:"pointer"}}>
                         
-                        <ListItem className={classes.ListItem} onClick={this.notes}>
-                            <ListItemIcon><EmojiObjectsOutlinedIcon /></ListItemIcon>
-                            <ListItemText primary="Notes" />
-                        </ListItem>
-                        <ListItem className={classes.ListItem} >
-                            <ListItemIcon><NotificationsNoneRoundedIcon /></ListItemIcon>
-                            <ListItemText primary="Reminders" />
-                        </ListItem>
-                         <ListItem className={classes.ListItem} >
+                        
+                            <ListItem className={this.props.selected == "Keep" ? classes.selectedListItems : classes.listItems} onClick={()=>this.sendName("Keep")} >
+                                <ListItemIcon><EmojiObjectsOutlinedIcon /></ListItemIcon>
+                                <ListItemText primary="Notes" />
+                            </ListItem>
+                        
+
+                        
+                            <ListItem className={this.props.selected == "Reminder" ? classes.selectedListItems : classes.listItems} onClick={()=>this.sendName("Reminder")}>
+                                <ListItemIcon><NotificationsNoneRoundedIcon /></ListItemIcon>
+                                <ListItemText primary="Reminders" />
+                            </ListItem>
+                        
+
+                         <ListItem className={classes.listItems} >
                             <ListItemIcon><EditOutlinedIcon /></ListItemIcon>
                             <ListItemText primary="Edit Labels" />
                         </ListItem>
-                        <ListItem className={classes.ListItem} >
-                            <ListItemIcon><ArchiveOutlinedIcon /></ListItemIcon>
-                            <ListItemText primary="Archive" />
-                        </ListItem>
-                        <ListItem className={classes.ListItem} >
-                            <ListItemIcon><DeleteOutlinedIcon /></ListItemIcon>
-                            <ListItemText primary="Trash" />
-                        </ListItem>
+
+                        
+                            <ListItem className={this.props.selected == "Archive" ? classes.selectedListItems : classes.listItems} onClick={()=>this.sendName("Archive")}>
+                                <ListItemIcon><ArchiveOutlinedIcon /></ListItemIcon>
+                                <ListItemText primary="Archive" />
+                                
+                            </ListItem>
+                        
+
+                        
+                            <ListItem className={this.props.selected == "Trash" ? classes.selectedListItems : classes.listItems} onClick={()=>this.sendName("Trash")}>
+                                <ListItemIcon><DeleteOutlinedIcon /></ListItemIcon>
+                                <ListItemText primary="Trash" />
+                            </ListItem>
                         
                     </List>
                 </Drawer>

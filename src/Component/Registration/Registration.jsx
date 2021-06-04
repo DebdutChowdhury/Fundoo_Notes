@@ -53,6 +53,7 @@ export default class Registration extends React.Component {
         }
         this.setState({ show: false })
     };
+    
     validationCheck = () => {
         this.setState({
             firstnameError: false,
@@ -142,7 +143,6 @@ export default class Registration extends React.Component {
     submit = () => {
 
         if (this.validationCheck()) {
-            this.setState({ snackmsg: "Registered sucessfully" })
             this.setState({ show: true })
             let data = {
                 "firstName": this.state.firstname,
@@ -151,6 +151,7 @@ export default class Registration extends React.Component {
                 "service": "advance",
                 "password": this.state.password
             }
+            console.log(data);
             service.registerUser(data).then((result) => {
                 console.log(result);
                 this.setState({ snackmsg: "Registrationn succeccfull" })
