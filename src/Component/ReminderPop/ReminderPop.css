@@ -10,9 +10,6 @@
 
 }
 
-.diff{
-    /* display: flex; */
-}
 
 .today{
     width: 300px;
@@ -49,7 +46,6 @@
     flex: 1 1 auto;
     margin-left: 3px;
     max-width: 200px;
-    /* text-align: right; */
     white-space: normal;
 }
 

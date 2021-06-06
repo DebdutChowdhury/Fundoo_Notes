@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Pin from '../Assets/pin.jpeg';
 import NoteService from '../../Services/NoteService';
 import Icon from '../Icon/Icon';
+import ColorPalet from '../ColorPalet/ColorPalet';
 
 const noteService = new NoteService();
 
@@ -87,6 +88,8 @@ export default class DisplayNotes extends Component {
                                     <p>{value.description}</p>
                                 </div>
                                 <Icon Notes={value} setColor={this.setColor}/>
+                                {/* <Icon/> */}
+                                {/* <ColorPalet Notes={value} setColor={this.setColor}/> */}
                             </div>
                         )
                     })}

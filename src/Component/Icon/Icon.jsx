@@ -9,6 +9,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { colors, Menu, MenuItem } from '@material-ui/core';
 import './Icon.css'
 import ReminderPop from '../ReminderPop/ReminderPop';
+import ColorPalet from '../ColorPalet/ColorPalet';
 
 
 const noteService = new NoteService();
@@ -51,21 +52,21 @@ export default class Icon extends Component {
         this.setState({ anchorEl: event.currentTarget })
     };
 
-    updateNote = (e, colorValue, value) => {
-        let token = localStorage.getItem("Token")
-        let data = {
-            noteIdList: [value.id],
-            color: colorValue,
-        }
-        noteService.colorChange(data, token).then((result)=> {
-            console.log(data);
-            console.log(result);
-            window.location.reload();
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-    }
+    // updateNote = (e, colorValue, value) => {
+    //     let token = localStorage.getItem("Token")
+    //     let data = {
+    //         noteIdList: [value.id],
+    //         color: colorValue,
+    //     }
+    //     noteService.colorChange(data, token).then((result)=> {
+    //         console.log(data);
+    //         console.log(result);
+    //         window.location.reload();
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     })
+    // }
 
     deleteNote = (e, value) => {
         e.stopPropagation();
@@ -101,11 +102,12 @@ export default class Icon extends Component {
                     {/* <AddAlertOutlinedIcon onClick={this.reminderPop}/> */}
                     <ReminderPop/>
                     <PersonAddOutlinedIcon/>
-                    <ColorLensOutlinedIcon onClick={this.changeShow}/>
+                    {/* <ColorLensOutlinedIcon onClick={this.changeShow}/> */}
+                    <ColorPalet Notes={this.props.Notes}/>
                     <AddPhotoAlternateOutlinedIcon/>
                     <ArchiveOutlinedIcon onClick={()=>this.archieveNote(this.props.Notes)}/>
                     <MoreVertIcon onClick={(e) => this.handleClick(e)} />
-                    {
+                    {/* {
                         this.state.show ? <div className="colorbox">
                             {
                                 colors.map((value) => {
@@ -117,7 +119,7 @@ export default class Icon extends Component {
                                 })
                             }
                         </div>:null
-                    }
+                    } */}
                     <Menu 
                         id="simple-menu"
                         anchorEl={this.state.anchorEl}

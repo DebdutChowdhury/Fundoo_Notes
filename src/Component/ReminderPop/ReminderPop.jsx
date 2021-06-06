@@ -7,16 +7,7 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import PlaceIcon from '@material-ui/icons/Place';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
 
-const useStyles = makeStyles((theme) => ({
-  // paper: {
-  //   border: '0.5px solid',
-  //   padding: theme.spacing(1, 15),
-  //   // backgroundColor: theme.palette.background.paper,
-  // },
-}));
-
 export default function ReminderPop(props) {
-  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -28,9 +19,6 @@ export default function ReminderPop(props) {
 
   return (
     <div>
-      {/* <button aria-describedby={id} type="button" onClick={handleClick}>
-        Toggle Popper
-      </button> */}
       <AddAlertOutlinedIcon aria-describedby={id} type="button" onClick={handleClick} style={{cursor:"pointer"}}/>
       <Popper id={id} open={open} anchorEl={anchorEl}>
         <div className="paper">
