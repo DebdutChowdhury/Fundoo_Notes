@@ -55,7 +55,7 @@ export default class DisplayNotes extends Component {
         if(data.title !== "" && data.description !== ""){
             noteService.updateNote(data, token).then((result) => {
                 console.log(result);
-                // this.props.updateNote();
+                this.props.updateNote();
                 window.location.reload();
                 {this.handleClose()}
             })
@@ -74,8 +74,9 @@ export default class DisplayNotes extends Component {
         return (
             <>
                 <div className="notess">
-                    {this.props.NotesArray.filter((data) => data.isDeleted === false).filter((data) => data.isArchived === false).reverse().map((value, index) => {
+                    {this.props.NotesArray.filter((data) => data.isArchived === false).filter((data)=>data.isDeleted===false).reverse().map((value, index) => {
                         var style = {backgroundColor : value.color}
+                        console.log("value",value)
                         return (
                             <div className="notebox" style={style}>
                                 <div onClick={(e) => this.handleClickOpen(e, value)}>

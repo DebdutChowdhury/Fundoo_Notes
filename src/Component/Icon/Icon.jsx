@@ -8,6 +8,7 @@ import NoteService from '../../Services/NoteService';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { colors, Menu, MenuItem } from '@material-ui/core';
 import './Icon.css'
+import ReminderPop from '../ReminderPop/ReminderPop';
 
 
 const noteService = new NoteService();
@@ -19,7 +20,8 @@ export default class Icon extends Component {
         this.state = {
             anchorEl: null,
             show: false,
-            color: ""
+            color: "",
+            showComponent: false
         }
     }
 
@@ -30,13 +32,15 @@ export default class Icon extends Component {
     archieveNote = (value) => {
         console.log(value);
         let data = {
-            noteList: [value.id],
-            isArchived: true
+            isArchived: true,
+            noteIdList: [value.id]
+            
         }
         let token = localStorage.getItem('Token');
         console.log(data);
         noteService.archieveNote(data,token).then((data) => {
             console.log(data);
+            window.location.reload();
         })
         .catch((err) => {
             console.log("error = " + err);
@@ -67,9 +71,10 @@ export default class Icon extends Component {
         e.stopPropagation();
         let token = localStorage.getItem("Token");
         let data = {
-            isDelete: true,
+            isDeleted: true,
             noteIdList: [value.id]
         }
+        console.log(data.noteIdList);
         noteService.deleteNote(data,token).then((result) => {
             console.log(result);
             window.location.reload();
@@ -84,7 +89,7 @@ export default class Icon extends Component {
     }
 
     reminderPop = (anchor) => {
-        this.props.data(anchor)
+        this.setState({})
     }
 
     render() {
@@ -93,7 +98,8 @@ export default class Icon extends Component {
         return (
             <>
                 <div className="inlineicons">
-                    <AddAlertOutlinedIcon onClick={this.reminderPop}/>
+                    {/* <AddAlertOutlinedIcon onClick={this.reminderPop}/> */}
+                    <ReminderPop/>
                     <PersonAddOutlinedIcon/>
                     <ColorLensOutlinedIcon onClick={this.changeShow}/>
                     <AddPhotoAlternateOutlinedIcon/>

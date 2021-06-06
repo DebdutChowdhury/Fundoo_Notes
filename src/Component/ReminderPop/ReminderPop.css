@@ -1,0 +1,55 @@
+/* .letters{
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-between;
+
+} */
+
+.paper{
+    border: 1px solid black;
+
+}
+
+.diff{
+    /* display: flex; */
+}
+
+.today{
+    width: 300px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    /* display: flex; */
+    
+    
+}
+
+.letter{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: #414344;
+}
+
+.time{
+    color: rgba(60,64,67,0.541);
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin-left: 10px;
+    max-width: 200px;
+    text-align: right;
+    white-space: normal;
+}
+
+.place{
+    color: #414344;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin-left: 3px;
+    max-width: 200px;
+    /* text-align: right; */
+    white-space: normal;
+}
+

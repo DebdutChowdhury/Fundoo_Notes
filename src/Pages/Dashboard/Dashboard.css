@@ -95,6 +95,7 @@ background-color: red;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding: 1%;
   /* padding: 8px; */
   /* position: relative; */
   /* background-color: brown; */
@@ -111,7 +112,7 @@ background-color: red;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  padding-left: 8px;
+  padding-left: 16px;
   box-sizing: border-box;
   /* display: none; */
   
@@ -123,6 +124,7 @@ background-color: red;
 .notebox .inlineicons{
     opacity: 0;
     display: flex;
+    justify-content: space-evenly;
     width: 230px;
     padding-top: 8px;
     position: relative;

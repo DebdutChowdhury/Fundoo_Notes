@@ -38,7 +38,7 @@ export default class Trash extends Component {
                         this.state.notes.filter(data => data.isDeleted === true).map((value,index) => {
                             return (
                                 <div className="notebox" key={index}>
-                                    {/* <InputBase
+                                    <InputBase
                                         style={{ paddingLeft: '8px' }}
                                         defaultValue={value.title}
                                         multiline
@@ -53,7 +53,7 @@ export default class Trash extends Component {
                                         className=""
                                         placeholder="  Description"
                                         inputProps={{ 'aria-label': 'Description ' }}
-                                    /> */}
+                                    />
                                     <Icon Notes={value}/>
                                 </div>
                             )

@@ -31,6 +31,12 @@ export default class NoteService {
             }
         })
     }
+    
+    getArchiveNote = (token) => {
+        return axiosService.getMethod(`${this.baseUrl}notes/getArchiveNotesList`, {
+            headers: {'Authorization': token}
+        })
+    }
 
     colorChange = (data, token) => {
         return axiosService.postMethod(`${this.baseUrl}notes/changesColorNotes`, data, {
@@ -40,7 +46,23 @@ export default class NoteService {
         })
     }
 
-    deleteForeverNote = (data, token) => {
+    deleteNote = (data, token) => {
+        return axiosService.postMethod(`${this.baseUrl}notes/trashNotes`, data, {
+            headers: {
+                'Authorization':token,
+            }
+        })
+    }
+
+    getDeleteNote = (token) => {
+        return axiosService.getMethod(`${this.baseUrl}notes/getTrashNotesList`, {
+            headers: {
+                'Authorization':token,
+            }
+        })
+    }
+
+    deleteForever = (data, token) => {
         return axiosService.postMethod(`${this.baseUrl}notes/deleteForeverNotes`, data, {
             headers: {
                 'Authorization':token,

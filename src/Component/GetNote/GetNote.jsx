@@ -24,12 +24,15 @@ export default class GetNote extends Component {
             this.setState({notes:result.data.data.data})
             console.log(this.state.notes);
         })
+        .catch((err)=>{
+            console.log(err);
+        })
     }
 
     render() {
         return (
             <div>
-                {/* <CreateNote updateData={this.getNote}/> */}
+                <CreateNote updateData={this.getNote}/>
                 <DisplayNotes updateNote={this.props.updateNote} NotesArray={this.state.notes}/>
                 {/* <DisplayNotes/> */}
                 

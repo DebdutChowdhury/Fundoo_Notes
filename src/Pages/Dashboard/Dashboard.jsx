@@ -30,6 +30,10 @@ import GetNote from '../../Component/GetNote/GetNote'
 import { Route, Router, Switch } from 'react-router';
 import Appbar from '../../Component/Appbar/Appbar';
 import DrawerPart from '../../Component/Drawer/DrawerPart';
+import Archive from '../../Component/ArchiveNotes/Archive';
+import { BrowserRouter } from 'react-router-dom';
+import CreateNote from '../../Component/CreateNote/CreateNote';
+import Trash from '../../Component/Trash/Trash';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -89,6 +93,7 @@ class Dashboard extends Component {
         this.state = {
             open: false,
             profile: false,
+            selectedRout: 'notes'
         }
     }
 
@@ -121,10 +126,29 @@ class Dashboard extends Component {
         this.setState({ open: !this.state.open });
     };
 
-    notes = () => {
-        // window.location.href = 'http://localhost:3000/dashboard'
+    notes = (value) => {
+        this.setState({selectedRout:value})
     }
 
+    setRout = (data) => {
+        this.setState({selectedRout:data})
+        console.log(data);
+    }
+
+    rendering =() => {
+        if(this.state.selectedRout == 'notes'){
+            return <GetNote/>
+        }
+        else if (this.state.selectedRout == 'Archive'){
+            return <Archive/>
+        }
+        else if (this.state.selectedRout == 'Trash'){
+            return <Trash/>
+        }
+        else{
+            return <GetNote/>
+        }
+    }
 
     render() {
         const { classes } = this.props;
@@ -132,9 +156,16 @@ class Dashboard extends Component {
         return (
             <div className="root">
                 <CssBaseline />
-                <Appbar/>
-                {/* <DrawerPart/> */}
-                <GetNote/>
+                <Appbar rout={this.setRout}/>
+                {this.state.selectedRout}
+                <div>
+                    {/* <CreateNote /> */}
+                    {this.rendering()}
+                    {/* <GetNote /> */}
+                    {/* <Archive/> */}
+                </div>
+                
+                
             </div>
         )
     }

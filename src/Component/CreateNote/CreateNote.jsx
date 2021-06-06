@@ -35,7 +35,7 @@ export default class CreateNote extends Component {
         let data = {
             title: this.state.title,
             description: this.state.description,
-            isArchived:true
+            // isArchived:true
         }
 
         this.click();
