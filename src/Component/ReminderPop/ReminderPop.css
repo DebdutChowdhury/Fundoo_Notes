@@ -5,9 +5,16 @@
 
 } */
 
+.fullDiv{
+    padding: 5%;
+    
+}
+
 .paper{
     border: 1px solid black;
-
+    border-radius: 5px;
+    padding: 4%;
+    background-color: white;
 }
 
 
@@ -34,7 +41,18 @@
     -webkit-flex: 1 1 auto;
     flex: 1 1 auto;
     margin-left: 10px;
-    max-width: 200px;
+    max-width: 170px;
+    text-align: right;
+    white-space: normal;
+}
+
+.timee{
+    color: rgba(60,64,67,0.541);
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin-left: 10px;
+    max-width: 178px;
     text-align: right;
     white-space: normal;
 }
@@ -49,3 +67,24 @@
     white-space: normal;
 }
 
+.reminderPopper {
+    width: 250px;
+    height: fit-content;
+  }
+  
+  .saveDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.dropdown{
+    padding: 7px 3px;
+}
+
+.btn{
+    margin: 0;
+    padding: 10px;
+    margin-left: 75%;
+    margin-top: 12px;
+}

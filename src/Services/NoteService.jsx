@@ -69,4 +69,28 @@ export default class NoteService {
             }
         })
     }
+
+    addReminderNote = (data, token) => {
+        return axiosService.postMethod(`${this.baseUrl}notes/addUpdateReminderNotes`, data, {
+            headers: {
+                'Authorization':token,
+            }
+        })
+    }
+
+    getReminderNote = (token) => {
+        return axiosService.getMethod(`${this.baseUrl}notes/getReminderNotesList`, {
+            headers: {
+                'Authorization':token,
+            }
+        })
+    }
+
+    removeReminderNote = (data, token) => {
+        return axiosService.postMethod(`${this.baseUrl}notes/removeReminderNotes`, data, {
+            headers: {
+                'Authorization':token,
+            }
+        })
+    }
 }

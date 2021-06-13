@@ -34,13 +34,17 @@ function ColorPalet(props) {
         })
     }
 
+    const updateColor = (colorValue) => {
+        props.getColor(colorValue)
+    }
+
     const colors = [ ' #d7aefb', '#a7ffeb', '#e8eaed', 
         '#aecbfa', '#e6c9a8', '#fdcfe8', '#f28b82', '#aecbfa'];
 
     return (
         <div>
             <ColorLensOutlinedIcon aria-describedby={id} type="button" onClick={handleClick} style={{cursor:"pointer"}}/>
-            <Popper  placement="top-start" id={id} open={open} anchorEl={anchorEl}>
+            <Popper  placement="right-start" id={id} open={open} anchorEl={anchorEl}>
                 <div>
                     {
                         open ? <div className="colorbox">
@@ -48,7 +52,7 @@ function ColorPalet(props) {
                                 colors.map((value) => {
                                     return (
                                         <>
-                                            <div className="colorsmall" onClick={(e)=>updateNote(e, value, props.Notes)} style={{backgroundColor:value}} ></div>
+                                            <div className="colorsmall" onClick={(e)=>{props.Notes ? updateNote(e, value, props.Notes): updateColor(value)}} style={{backgroundColor:value}} ></div>
                                         </>
                                     )
                                 })

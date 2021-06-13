@@ -1,4 +1,4 @@
-import { Dialog, InputBase } from '@material-ui/core';
+import { Chip, Dialog, InputBase } from '@material-ui/core';
 import React, { Component } from 'react';
 import Pin from '../Assets/pin.jpeg';
 import NoteService from '../../Services/NoteService';
@@ -9,39 +9,39 @@ const noteService = new NoteService();
 
 export default class DisplayNotes extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             title: "",
             description: "",
             open: false,
             noteId: '',
-            color:null,
+            color: null,
         }
     }
 
     handleClickOpen = (e, value) => {
         e.stopPropagation();
-       this.setState({
-           open: true,
-           noteId: value.id,
-           title: value.title,
-           description: value.description
-       })
+        this.setState({
+            open: true,
+            noteId: value.id,
+            title: value.title,
+            description: value.description
+        })
     }
 
     handleClose = () => {
         console.log("i am working");
-        this.setState({open: !this.state.open})
+        this.setState({ open: !this.state.open })
         console.log(this.state.open);
     };
 
     handleTitle = (event) => {
-        this.setState({title: event.target.value})
+        this.setState({ title: event.target.value })
     }
 
     handleDescription = (event) => {
-        this.setState({description: event.target.value})
+        this.setState({ description: event.target.value })
     }
 
     updateNote = (event) => {
@@ -53,21 +53,22 @@ export default class DisplayNotes extends Component {
             noteId: this.state.noteId
         }
         console.log(data.description);
-        if(data.title !== "" && data.description !== ""){
+        if (data.title !== "" && data.description !== "") {
             noteService.updateNote(data, token).then((result) => {
                 console.log(result);
-                this.props.updateNote();
+                // this.props.updateNote();
+                this.props.getNote();
                 window.location.reload();
-                {this.handleClose()}
+                { this.handleClose() }
             })
-            .catch((err) => {
-                console.log(err);
-            })
+                .catch((err) => {
+                    console.log(err);
+                })
         }
     }
 
     setColor = (colorValue) => {
-        this.setState({color: colorValue})
+        this.setState({ color: colorValue })
     }
 
     render() {
@@ -75,21 +76,19 @@ export default class DisplayNotes extends Component {
         return (
             <>
                 <div className="notess">
-                    {this.props.NotesArray.filter((data) => data.isArchived === false).filter((data)=>data.isDeleted===false).reverse().map((value, index) => {
-                        var style = {backgroundColor : value.color}
-                        console.log("value",value)
+                    {this.props.NotesArray.filter((data) => data.isArchived == false).filter((data) => data.isDeleted === false).map((value, index) => {
+                        var style = { backgroundColor: value.color }
+                        console.log("value", value)
                         return (
                             <div className="notebox" style={style}>
                                 <div onClick={(e) => this.handleClickOpen(e, value)}>
                                     <div className="inline1">
-                                        <h4 style={{width:'90%'}}>{value.title}</h4>
+                                        <h4 style={{ width: '90%' }}>{value.title}</h4>
                                         <img src={Pin} alt="" />
                                     </div>
                                     <p>{value.description}</p>
                                 </div>
-                                <Icon Notes={value} setColor={this.setColor}/>
-                                {/* <Icon/> */}
-                                {/* <ColorPalet Notes={value} setColor={this.setColor}/> */}
+                                <Icon Notes={value} setColor={this.setColor} />
                             </div>
                         )
                     })}
@@ -100,7 +99,7 @@ export default class DisplayNotes extends Component {
                             defaultValue=""
                             multiline
                             className="inputbas"
-                            placeholder= " Title"
+                            placeholder=" Title"
                             fullWidth
                             onChange={this.handleTitle}
                             defaultValue={this.state.title}
@@ -111,16 +110,16 @@ export default class DisplayNotes extends Component {
                             defaultValue=""
                             multiline
                             className="inputbas"
-                            placeholder= " Title"
+                            placeholder=" Title"
                             fullWidth
                             onChange={this.handleDescription}
                             defaultValue={this.state.description}
                             inputProps={{ 'aria-label': 'Title ' }}
                         />
                         <div className="enclose">
-                            <Icon/>
+                            <Icon />
                             <div className="inp">
-                                <input type="button" onClick={(e)=> this.updateNote(e)} value="close"/>
+                                <input type="button" onClick={(e) => this.updateNote(e)} value="close" />
                             </div>
                         </div>
                     </div>

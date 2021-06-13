@@ -34,6 +34,7 @@ import Archive from '../../Component/ArchiveNotes/Archive';
 import { BrowserRouter } from 'react-router-dom';
 import CreateNote from '../../Component/CreateNote/CreateNote';
 import Trash from '../../Component/Trash/Trash';
+import Reminder from '../../Component/Reminder/Reminder';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -138,6 +139,9 @@ class Dashboard extends Component {
     rendering =() => {
         if(this.state.selectedRout == 'notes'){
             return <GetNote/>
+        }
+        else if (this.state.selectedRout == 'Reminder'){
+            return <Reminder/>
         }
         else if (this.state.selectedRout == 'Archive'){
             return <Archive/>

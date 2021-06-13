@@ -9,7 +9,8 @@ export default class Trash extends Component {
     constructor(props){
         super(props);
         this.state = {
-            notes:[]
+            notes:[],
+            trash:true
         }
     }
 
@@ -33,11 +34,12 @@ export default class Trash extends Component {
     render() {
         return (
             <>
-                <div className="notess">
+                <div className="notesss">
                     {
                         this.state.notes.filter(data => data.isDeleted === true).map((value,index) => {
+                            var style = {backgroundColor : value.color}
                             return (
-                                <div className="notebox" key={index}>
+                                <div className="notebox" key={index} style={style}>
                                     <InputBase
                                         style={{ paddingLeft: '8px' }}
                                         defaultValue={value.title}
@@ -54,7 +56,7 @@ export default class Trash extends Component {
                                         placeholder="  Description"
                                         inputProps={{ 'aria-label': 'Description ' }}
                                     />
-                                    <Icon Notes={value}/>
+                                    <Icon Notes={value} trash={this.state.trash} getTrash={this.note}/>
                                 </div>
                             )
                         })

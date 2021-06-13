@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 import BrushIcon from '@material-ui/icons/Brush';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
-import { InputBase } from '@material-ui/core';
+import { Card, Chip, InputBase } from '@material-ui/core';
 import NoteService from '../../Services/NoteService';
 import Icon from '../Icon/Icon';
+import ColorPalet from '../ColorPalet/ColorPalet';
+import moment from 'moment';
 
 const noteService = new NoteService();
 
@@ -15,6 +17,8 @@ export default class CreateNote extends Component {
             open: true,
             title: "",
             description: "",
+            color:'',
+            reminder:""
         }
     }
 
@@ -35,8 +39,10 @@ export default class CreateNote extends Component {
         let data = {
             title: this.state.title,
             description: this.state.description,
-            // isArchived:true
+            reminder:this.state.reminder,
+            color:this.state.color
         }
+        console.log("Add Note", data);
 
         this.click();
         if(data.title === '' || data.description === ''){
@@ -46,6 +52,7 @@ export default class CreateNote extends Component {
             let token = localStorage.getItem('Token')
             noteService.addNote(data, token).then((data) => {
                 this.props.updateData();
+                this.props.updateReminderData();
                 console.log(data);
             })
             .catch((error) => {
@@ -54,7 +61,33 @@ export default class CreateNote extends Component {
         }
     }
 
+    getColor = (colorValue) => {
+        console.log("Color Value", colorValue);
+        this.setState({color: colorValue})
+    }
+
+    getReminderData = (date, time) => {
+        
+        if (date !== null && time !== null) {
+            let reminder = moment(date).format("MMM D")+", "+ moment(time).format("h:mm:A");
+            this.setState({
+                reminder: reminder,
+            });
+        console.log("Reminder: ",reminder);
+        console.log(moment(date).format("MMM D"));
+        console.log(moment(time).format("h:mm:A"));
+            
+        }
+    }
+
+    handleReminder = () => {
+        this.setState({
+            reminder: null,
+          });
+    }
+
     render() {
+        
         return (
             <>
                 {this.state.open ? 
@@ -64,7 +97,8 @@ export default class CreateNote extends Component {
                         <BrushIcon/>
                         <ImageOutlinedIcon/>
                     </div>:
-                    <div className="brieftakenote">
+                    
+                    <div className="brieftakenote" style={{backgroundColor:this.state.color}}>
                         <div className="inlinepin">
                             <InputBase
                                 defaultValue=""
@@ -83,17 +117,29 @@ export default class CreateNote extends Component {
                             onChange={this.handleDescription}  
                             inputProps={{'aria-label': 'Take a Note...'}}
                             />
+                            <div>
+                                {this.state.reminder !== '' && (
+                                    <div className="reminder">
+                                    <Chip
+                                        label={this.state.reminder}
+                                        onDelete={() => this.handleReminder()}
+                                    />
+                                    </div>
+                                )}
+                            </div>
                         <div>
-                            <div className="enclose">
-                                <Icon/>
+                            <div className="enclose" >
+                                <Icon getColor={this.getColor} getReminder={this.getReminderData}/>
+                                {/* <ColorPalet/> */}
                                 <div class="inp">
                                     <input type="button" onClick={this.close} value="Close" />
                                 </div>
                             </div>
                         </div>
                     </div>
+                    }
                 
-                }
+                
             </>
         )
     }

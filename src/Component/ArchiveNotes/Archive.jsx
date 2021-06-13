@@ -2,6 +2,7 @@ import { InputBase } from '@material-ui/core';
 import React, { Component } from 'react'
 import Icon from '../Icon/Icon';
 import NoteService from '../../Services/NoteService'
+import ColorPalet from '../ColorPalet/ColorPalet';
 
 const noteService = new NoteService();
 
@@ -9,7 +10,8 @@ export default class Archive extends Component {
     constructor(props){
         super(props);
         this.state = {
-            notes:[]
+            notes:[],
+            archive: true
         }
     }
 
@@ -31,11 +33,12 @@ export default class Archive extends Component {
     render() {
         return (
             <>
-                <div className="notess">
+                <div className="notesss">
                     {
                         this.state.notes.filter(data => data.isArchived === true).map((value, index) => {
+                            var style = {backgroundColor : value.color}
                             return (
-                                <div className="notebox" key={value}>
+                                <div className="notebox" key={value} style={style}>
                                     <InputBase
                                         style={{ paddingLeft: '8px' }}
                                         defaultValue={value.title}
@@ -52,7 +55,7 @@ export default class Archive extends Component {
                                         placeholder="  Description"
                                         inputProps={{ 'aria-label': 'Description ' }}
                                     />
-                                    <Icon Notes={value}/>
+                                    <Icon Notes={value} archive={this.state.archive} getArchive={this.note}/>
                                 </div>
                             )
                         })

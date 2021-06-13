@@ -33,7 +33,7 @@ export default class GetNote extends Component {
         return (
             <div>
                 <CreateNote updateData={this.getNote}/>
-                <DisplayNotes updateNote={this.props.updateNote} NotesArray={this.state.notes}/>
+                <DisplayNotes updateNote={this.props.updateNote} getNote={this.getNote} NotesArray={this.state.notes}/>
                 {/* <DisplayNotes/> */}
                 
             </div>
