@@ -67,7 +67,7 @@ export default class CreateNote extends Component {
     }
 
     getReminderData = (date, time) => {
-        
+        console.log("Date:", date, "Time:",time);
         if (date !== null && time !== null) {
             let reminder = moment(date).format("MMM D")+", "+ moment(time).format("h:mm:A");
             this.setState({
@@ -78,6 +78,7 @@ export default class CreateNote extends Component {
         console.log(moment(time).format("h:mm:A"));
             
         }
+
     }
 
     handleReminder = () => {

@@ -4,6 +4,7 @@ import NoteService from '../../Services/NoteService'
 import Pin from '../Assets/pin.jpeg'
 import Icon from '../Icon/Icon';
 import DateTimePicker from '../DateTime/DateTimePicker';
+import moment from "moment"
 
 const noteService = new NoteService();
 
@@ -31,6 +32,7 @@ export default class Card extends Component {
     //        description: value.description,
     //        reminder:value.reminder
     //    })
+    console.log("HandleClick open");
     this.props.handleClickOpen(e, value)
     }
     removeReminder = (value) => {
@@ -57,6 +59,33 @@ export default class Card extends Component {
         this.setState({datePicker:!this.state.datePicker})
     }
 
+    updateReminderNote = () => {
+        console.log("reminder Date: ",this.state.reminder);
+        console.log("value: ",this.props.value);
+        let token = localStorage.getItem("Token");
+        let data = {
+            noteIdList: [this.props.value.id],
+            reminder: this.state.reminder
+        }
+        noteService.addReminderNote(data, token).then((result)=>{
+            console.log(result);
+            this.props.updateReminderNote();
+            {this.handleClose()}
+        })
+    }
+
+    updateReminder =(date, time)=> {
+        if (date !== null && time !== null) {
+            let reminder = moment(date).format("MMM D")+", "+ moment(time).format("h:mm:A");
+            console.log("Reminder: ",reminder);
+            this.setState({
+                reminder: reminder,
+            }, () => this.updateReminderNote());
+            console.log("reminder date: ",date, "time ", time);
+        // this.updateReminderNote();
+        }
+    }
+
     render() {
         return (
             <>
@@ -71,7 +100,8 @@ export default class Card extends Component {
                     </div>  
                     <Chip 
                         onClick={this.callChange}
-                        label={this.props.value.reminder}
+                        // label={this.props.value.reminder}
+                        label={moment(new Date(this.props.value.reminder)).format("MMM DD,h:mm A")}
                         onDelete={() => this.removeReminder(this.props.value)}
                         />
                     <Icon Notes={this.props.value} setColor={this.setColor}/>
@@ -83,8 +113,8 @@ export default class Card extends Component {
                             editPicker={this.callChange} 
                             reminder={this.props.value.reminder} 
                             edit={true} 
-                            dateTime={this.props.updateReminderNote} 
-                            updateReminder={this.props.updateReminder}
+                            dateTime={this.updateReminderNote} 
+                            updateReminder={this.updateReminder}
                         />:null}
                 </div>
             </>

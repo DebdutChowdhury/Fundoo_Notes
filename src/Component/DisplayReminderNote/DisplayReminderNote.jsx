@@ -75,30 +75,31 @@ export default class DisplayReminderNote extends Component {
            })
     }
 
-    updateReminderNote = () => {
-        let token = localStorage.getItem("Token");
-        let data = {
-            title: this.state.title,
-            description: this.state.description,
-            noteId: this.state.noteId,
-            reminder: this.state.reminder
-        }
-        noteService.addReminderNote(data, token).then((result)=>{
-            console.log(result);
-            this.props.updateReminderNote();
-            {this.handleClose()}
-        })
-    }
+    // updateReminderNote = () => {
+    //     console.log("reminder Date: ",this.state.reminder);
+    //     let token = localStorage.getItem("Token");
+    //     let data = {
+    //         noteId: this.state.noteId,
+    //         reminder: this.state.reminder
+    //     }
+    //     noteService.addReminderNote(data, token).then((result)=>{
+    //         console.log(result);
+    //         this.props.updateReminderNote();
+    //         {this.handleClose()}
+    //     })
+    // }
 
-    updateReminder =(date, time)=> {
-        if (date !== null && time !== null) {
-            let reminder = moment(date).format("MMM D")+", "+ moment(time).format("h:mm:A");
-            this.setState({
-                reminder: reminder,
-            });
-        this.updateReminderNote();
-        }
-    }
+    // updateReminder =(date, time)=> {
+    //     if (date !== null && time !== null) {
+    //         let reminder = moment(date).format("MMM D")+", "+ moment(time).format("h:mm:A");
+    //         console.log("Reminder: ",reminder);
+    //         this.setState({
+    //             reminder: reminder,
+    //         }, () => this.updateReminderNote());
+    //         console.log("reminder date: ",date, "time ", time);
+    //     // this.updateReminderNote();
+    //     }
+    // }
 
     render() {
         console.log("reminder", this.props.NotesArray);
