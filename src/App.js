@@ -6,17 +6,18 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import GetNote from './Component/GetNote/GetNote';
 import Archive from './Component/ArchiveNotes/Archive';
 import ReminderPop from './Component/ReminderPop/ReminderPop';
+import ProtectedRoute from './ProtectedRoute';
+import AuthRout from './AuthRout';
 
 const Routing = () => {
   return (
     <Router>
       <div>
         <Switch>
-          <Route exact path="/" component={Registration}></Route>
-          <Route path = "/login" component={Login}></Route> 
-          <Route exact path="/dashboard" component={Dashboard}></Route>
-          <Route path="/dashboard/notes" component={GetNote}></Route>
-          <Route exact path="/dashboard/archive" component={Archive}></Route>
+        
+          <AuthRout exact path="/" component={Registration}></AuthRout>
+          <AuthRout path = "/login" component={Login}></AuthRout> 
+          <ProtectedRoute path="/dashboard" component={Dashboard} />
         </Switch>
       </div>
     </Router>
@@ -26,7 +27,6 @@ const Routing = () => {
 function App() {
   return (
     <BrowserRouter> <Routing/> </BrowserRouter>
-    // <ReminderPop/>
   );
 }
 

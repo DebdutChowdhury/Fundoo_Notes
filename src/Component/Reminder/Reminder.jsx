@@ -31,7 +31,11 @@ export default class Reminder extends Component {
         return (
             <div>
                 <CreateNote updateReminderData={this.getReminderNote}/>
-                <DisplayReminderNote NotesArray={this.state.notes} updateReminderNote={this.getReminderNote}/>
+                <DisplayReminderNote 
+                    NotesArray={this.state.notes} 
+                    updateReminderNote={this.getReminderNote}
+                    render = {this.props.render}
+                />
             </div>
         )
     }

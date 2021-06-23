@@ -89,9 +89,9 @@ export default class Card extends Component {
     render() {
         return (
             <>
-                <div className="notebox" style={this.props.style}>
+                <div style={this.props.style}>
                     <div onClick={(e) => this.handleClickOpen(e, this.props.value)}>
-                        <div className="inline1">
+                        <div className={this.props.gridView === true ? "gridinline1" : "inline1"}>
                             <h4 style={{width:'90%'}}>{this.props.value.title}</h4>
                             <img src={Pin} alt="" />
                         </div>
@@ -104,7 +104,11 @@ export default class Card extends Component {
                         label={moment(new Date(this.props.value.reminder)).format("MMM DD,h:mm A")}
                         onDelete={() => this.removeReminder(this.props.value)}
                         />
-                    <Icon Notes={this.props.value} setColor={this.setColor}/>
+                    <Icon 
+                        Notes={this.props.value} 
+                        setColor={this.setColor}
+                        gridView={this.props.gridView}
+                    />
                     
                 </div>
                 <div>

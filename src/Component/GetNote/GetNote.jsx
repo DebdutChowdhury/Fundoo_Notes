@@ -30,10 +30,17 @@ export default class GetNote extends Component {
     }
 
     render() {
+        console.log("getNote Grid", this.props.gridView);
         return (
             <div>
                 <CreateNote updateData={this.getNote}/>
-                <DisplayNotes updateNote={this.props.updateNote} getNote={this.getNote} NotesArray={this.state.notes}/>
+                <DisplayNotes 
+                    gridView={this.props.gridView} 
+                    updateNote={this.props.updateNote} 
+                    getNote={this.getNote} 
+                    NotesArray={this.state.notes}
+                    render = {this.props.render}
+                />
                 {/* <DisplayNotes/> */}
                 
             </div>

@@ -73,25 +73,11 @@ export default class DisplayNotes extends Component {
 
     render() {
         console.log("hello", this.props.NotesArray);
+        console.log("grid", this.props.gridView);
         return (
             <>
                 <div className="notess">
-                    {this.props.NotesArray.filter((data) => data.isArchived == false).filter((data) => data.isDeleted === false).map((value, index) => {
-                        var style = { backgroundColor: value.color }
-                        console.log("value", value)
-                        return (
-                            <div className="notebox" style={style}>
-                                <div onClick={(e) => this.handleClickOpen(e, value)}>
-                                    <div className="inline1">
-                                        <h4 style={{ width: '90%' }}>{value.title}</h4>
-                                        <img src={Pin} alt="" />
-                                    </div>
-                                    <p>{value.description}</p>
-                                </div>
-                                <Icon Notes={value} setColor={this.setColor} />
-                            </div>
-                        )
-                    })}
+                    {this.props.render(this.props.NotesArray)}
                 </div>
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <div className="dialogbox">
@@ -129,3 +115,21 @@ export default class DisplayNotes extends Component {
         )
     }
 }
+{/* <div className={this.props.gridView === true ? "gridNotess": "notess"}>
+                    {this.props.NotesArray.filter((data) => data.isArchived == false).filter((data) => data.isDeleted === false).map((value, index) => {
+                        var style = { backgroundColor: value.color }
+                        console.log("value", value)
+                        return (
+                            <div className={this.props.gridView === true ? "gridNoteBox": "notebox"} style={style}>
+                                <div onClick={(e) => this.handleClickOpen(e, value)}>
+                                    <div className="inline1">
+                                        <h4 style={{ width: '90%' }}>{value.title}</h4>
+                                        <img src={Pin} alt="" />
+                                    </div>
+                                    <p>{value.description}</p>
+                                </div>
+                                <Icon Notes={value} setColor={this.setColor} />
+                            </div>
+                        )
+                    })}
+                </div> */}

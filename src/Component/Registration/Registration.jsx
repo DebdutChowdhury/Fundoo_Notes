@@ -9,7 +9,13 @@ import { Slide } from '@material-ui/core';
 import UserServices from "../../Services/UserService";
 import MuiAlert from '@material-ui/lab/Alert';
 
-const service = new UserServices()
+const service = new UserServices();
+const fname = React.createRef();
+const lname = React.createRef();
+const email = React.createRef();
+const pass = React.createRef();
+const cpass = React.createRef();
+const save = React.createRef();
 
 export default class Registration extends React.Component {
 
@@ -170,6 +176,47 @@ export default class Registration extends React.Component {
         }
 
     }
+    
+    componentDidMount(){
+        fname.current.focus()
+    }
+
+    fnameKeyDown = (e) => {
+        if(e.key === "Enter"){
+            lname.current.focus();
+        }
+    }
+
+    lnameKeyDown = (e) => {
+        if(e.key === "Enter"){
+            email.current.focus();
+        }
+    }
+
+    emailKeyDown = (e) => {
+        if(e.key === "Enter"){
+            pass.current.focus()
+        }
+    }
+
+    passKeyDown = (e) => {
+        if(e.key === "Enter"){
+            cpass.current.focus()
+        }
+    }
+
+    confKeyDown = (e) => {
+        if(e.key === "Enter"){
+            save.current.focus()
+        }
+    }
+
+    saveKeyDown = (e) => {
+        if(e.key === "Enter"){
+            this.submit()
+        }
+    }
+
     render(){
         return (
             <>
@@ -184,22 +231,22 @@ export default class Registration extends React.Component {
                             <div className="create">Create your Google Account</div>
                             <div className="inputs">
                                 <div className="inline">
-                                    <TextField id="outlined-basic" className="fn" variant="outlined" name="firstname" label="First name" onChange={this.handleChange}
+                                    <TextField inputRef={fname} onKeyDown={this.fnameKeyDown} id="outlined-basic" className="fn" variant="outlined" name="firstname" label="First name" onChange={this.handleChange}
                                     error={this.state.firstnameError} size="small" margin="dense" helperText={this.state.firstnameErrorMsg}/>
 
-                                    <TextField id="outlined-basic" className="fn space" variant="outlined" name="lastname" onChange={this.handleChange}
+                                    <TextField inputRef={lname} onKeyDown={this.lnameKeyDown} id="outlined-basic" className="fn space" variant="outlined" name="lastname" onChange={this.handleChange}
                                     error={this.state.lastnameError} label="Last name" size="small" margin="dense" helperText={this.state.lastnameErrorMsg}/>
                                 </div>
                                 <div>
-                                    <TextField id="outlined-basic" variant="outlined" name="username" fullWidth label="Username" onChange={this.handleChange}
+                                    <TextField inputRef={email} onKeyDown={this.emailKeyDown} id="outlined-basic" variant="outlined" name="username" fullWidth label="Username" onChange={this.handleChange}
                                         error={this.state.usernameError} size="small" margin="dense" helperText={this.state.usernameErrorMsg}/>  <br />
                                 </div>
                                 <a href="#"> Use my current email address instead </a>
                                 <div className="inline">
-                                    <TextField id="outlined-basic" className="fn" type={this.state.showpassword ? "password" : "type"} variant="outlined" name="password" label="Password" size="small" margin="dense" onChange={this.handleChange}
+                                    <TextField inputRef={pass} onKeyDown={this.passKeyDown} id="outlined-basic" className="fn" type={this.state.showpassword ? "password" : "type"} variant="outlined" name="password" label="Password" size="small" margin="dense" onChange={this.handleChange}
                                         error={this.state.passwordError} helperText={this.state.passwordErrorMsg}/>
 
-                                    <TextField id="outlined-basic" className="fn space" type={this.state.showpassword ? "password" : "type"} variant="outlined" onChange={this.handleChange} error={this.state.confirmpasswordError} name="confirmpassword" label="Confirm Password" size="small" margin="dense" helperText={this.state.confirmpasswordErrorMsg}/>
+                                    <TextField inputRef={cpass} onKeyDown={this.confKeyDown} id="outlined-basic" className="fn space" type={this.state.showpassword ? "password" : "type"} variant="outlined" onChange={this.handleChange} error={this.state.confirmpasswordError} name="confirmpassword" label="Confirm Password" size="small" margin="dense" helperText={this.state.confirmpasswordErrorMsg}/>
                                 </div>
                                 <span>Use 8 or more characters with a mix of letters, numbers & symbols</span>
                                 <div>
@@ -208,7 +255,7 @@ export default class Registration extends React.Component {
                                 </div>
                                 <div className="inline__buttons">
                                     <Link to="/login">Sign in instead</Link>
-                                    <Button variant="outlined" onClick={this.submit} size="small">Submit</Button>
+                                    <Button ref={save} onKeyDown={this.saveKeyDown} variant="outlined" onClick={this.submit} size="small">Submit</Button>
                                     <Snackbar
                                         anchorOrigin={{
                                             vertical: 'bottom',

@@ -106,21 +106,7 @@ export default class DisplayReminderNote extends Component {
         return (
             <>
                 <div className="notess">
-                    {this.props.NotesArray.filter((data)=>data.isArchived==false).filter((data)=>data.isDeleted===false).map((value, index) => {
-                        var style = {backgroundColor : value.color}
-                        console.log("value",value)
-                        return (
-                            <div>
-                                <Card 
-                                    value={value}
-                                    style={style}
-                                    updateReminderNote={this.updateReminderNote}
-                                    updateReminder={this.updateReminder}
-                                    handleClickOpen={this.handleClickOpen}
-                                />
-                            </div>                            
-                        )
-                    })}
+                    {this.props.render(this.props.NotesArray)}
                 </div>
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <div className="dialogbox">
@@ -169,3 +155,18 @@ export default class DisplayReminderNote extends Component {
         )
     }
 }
+{/* {this.props.NotesArray.filter((data)=>data.isArchived==false).filter((data)=>data.isDeleted===false).map((value, index) => {
+                        var style = {backgroundColor : value.color}
+                        console.log("value",value)
+                        return (
+                            <div>
+                                <Card 
+                                    value={value}
+                                    style={style}
+                                    updateReminderNote={this.updateReminderNote}
+                                    updateReminder={this.updateReminder}
+                                    handleClickOpen={this.handleClickOpen}
+                                />
+                            </div>                            
+                        )
+                    })} */}

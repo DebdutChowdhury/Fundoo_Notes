@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Icon from '../Icon/Icon';
 import NoteService from '../../Services/NoteService'
 import ColorPalet from '../ColorPalet/ColorPalet';
+import Card from '../Card/Card';
 
 const noteService = new NoteService();
 
@@ -34,11 +35,18 @@ export default class Archive extends Component {
         return (
             <>
                 <div className="notesss">
-                    {
+                    {this.props.render(this.state.notes)}
+                </div>
+            </>
+        )
+    }
+}
+
+{/* {
                         this.state.notes.filter(data => data.isArchived === true).map((value, index) => {
                             var style = {backgroundColor : value.color}
                             return (
-                                <div className="notebox" key={value} style={style}>
+                                 <div className="notebox" key={value} style={style}>
                                     <InputBase
                                         style={{ paddingLeft: '8px' }}
                                         defaultValue={value.title}
@@ -56,12 +64,7 @@ export default class Archive extends Component {
                                         inputProps={{ 'aria-label': 'Description ' }}
                                     />
                                     <Icon Notes={value} archive={this.state.archive} getArchive={this.note}/>
-                                </div>
+                                </div> 
                             )
                         })
-                    }
-                </div>
-            </>
-        )
-    }
-}
+                    } */}

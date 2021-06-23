@@ -153,22 +153,24 @@ export default class Icon extends Component {
         '#aecbfa', '#e6c9a8', '#fdcfe8', '#f28b82', '#aecbfa'];
         return (
             <>
-                <div className="inlineicons" style={{cursor:"pointer"}}>
+                <div className={this.props.gridView === true ? "gridinlineicons" :"inlineicons"} style={{cursor:"pointer"}}>
                     <div>
-                        {this.props.trash ? (
+                        {console.log(this.props.Notes)}
+                        {this.props.Notes.isDeleted===true ? (
                             <div >
                                 <DeleteForeverRoundedIcon onClick={(e) => this.deleteForever(this.props.Notes)}/>
                                 <RestoreFromTrashRoundedIcon onClick={(e) => this.restore(this.props.Notes)}/>
                             </div>
                         ):
-                        <div className="inlineicons">
+                        <div className={this.props.gridView === true ? "gridinlineicons" :"inlineicons"}>
                    
                     <ReminderPop getReminder={this.getData}/>
                     <PersonAddOutlinedIcon/>
                     
                     <ColorPalet Notes={this.props.Notes} getColor={this.props.getColor}/>
                     <AddPhotoAlternateOutlinedIcon/>
-                    {this.props.archive ? (
+
+                    {this.props.Notes.isArchived===true ? (
                         <UnarchiveOutlinedIcon onClick={(e) => this.unArchiveNote(this.props.Notes)} />
                     ): (
                         <ArchiveOutlinedIcon onClick={(e)=>this.archieveNote(this.props.Notes)}/>

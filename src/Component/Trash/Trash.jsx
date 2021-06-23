@@ -1,6 +1,7 @@
 import { InputBase } from '@material-ui/core';
 import React, { Component } from 'react';
 import NoteService from '../../Services/NoteService';
+import Card from '../Card/Card';
 import Icon from '../Icon/Icon';
 
 const noteService = new NoteService();
@@ -35,7 +36,13 @@ export default class Trash extends Component {
         return (
             <>
                 <div className="notesss">
-                    {
+                    {this.props.render(this.state.notes)}
+                </div>
+            </>
+        )
+    }
+}
+{/* {
                         this.state.notes.filter(data => data.isDeleted === true).map((value,index) => {
                             var style = {backgroundColor : value.color}
                             return (
@@ -60,9 +67,4 @@ export default class Trash extends Component {
                                 </div>
                             )
                         })
-                    }
-                </div>
-            </>
-        )
-    }
-}
+                    } */}

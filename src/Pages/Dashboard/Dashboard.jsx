@@ -35,6 +35,7 @@ import { BrowserRouter } from 'react-router-dom';
 import CreateNote from '../../Component/CreateNote/CreateNote';
 import Trash from '../../Component/Trash/Trash';
 import Reminder from '../../Component/Reminder/Reminder';
+import MapData from '../../Component/MapData/MapData';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -94,7 +95,8 @@ class Dashboard extends Component {
         this.state = {
             open: false,
             profile: false,
-            selectedRout: 'notes'
+            selectedRout: 'notes',
+            gridView : false
         }
     }
 
@@ -138,20 +140,25 @@ class Dashboard extends Component {
 
     rendering =() => {
         if(this.state.selectedRout == 'notes'){
-            return <GetNote/>
+            return <GetNote gridView={this.state.gridView} render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
         }
         else if (this.state.selectedRout == 'Reminder'){
-            return <Reminder/>
+            return <Reminder  render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
         }
         else if (this.state.selectedRout == 'Archive'){
-            return <Archive/>
+            return <Archive  render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
         }
         else if (this.state.selectedRout == 'Trash'){
-            return <Trash/>
+            return <Trash  render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
         }
         else{
-            return <GetNote/>
+            return <GetNote  render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
         }
+    }
+
+    onClickGrid = () =>{
+        this.setState({gridView: !this.state.gridView})
+        console.log(this.state.gridView);
     }
 
     render() {
@@ -160,7 +167,9 @@ class Dashboard extends Component {
         return (
             <div className="root">
                 <CssBaseline />
-                <Appbar rout={this.setRout}/>
+                <Appbar rout={this.setRout} gridView={this.state.gridView}
+                    grid={this.onClickGrid}
+                />
                 {this.state.selectedRout}
                 <div>
                     {/* <CreateNote /> */}
