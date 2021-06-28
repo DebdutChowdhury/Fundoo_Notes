@@ -16,6 +16,11 @@ export default class GetNote extends Component {
     componentDidMount(){
         this.getNote();
     }
+    
+    // shouldComponentUpdate(){
+    //     console.log("For search", this.props.inputSearch);
+    //     return true
+    // }
 
     getNote = () => {
         let token = localStorage.getItem('Token')
@@ -23,14 +28,22 @@ export default class GetNote extends Component {
         noteService.getNote(token).then((result) => {
             this.setState({notes:result.data.data.data})
             console.log(this.state.notes);
+            // let arr = [];
+            // arr.push(this.state.notes)
+            this.onTrigerSearch(this.state.notes)
+            // this.props.searchNote(this.state.notes)
         })
         .catch((err)=>{
             console.log(err);
         })
     }
 
+    onTrigerSearch = (data) => {
+        this.props.searchNote(data)
+    }
+
     render() {
-        console.log("getNote Grid", this.props.gridView);
+        console.log("getNote Grid", this.props.inputSearch);
         return (
             <div>
                 <CreateNote updateData={this.getNote}/>

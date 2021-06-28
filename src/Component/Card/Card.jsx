@@ -88,7 +88,7 @@ export default class Card extends Component {
 
     render() {
         return (
-            <>
+            <>{console.log(this.props.value)}
                 <div style={this.props.style}>
                     <div onClick={(e) => this.handleClickOpen(e, this.props.value)}>
                         <div className={this.props.gridView === true ? "gridinline1" : "inline1"}>

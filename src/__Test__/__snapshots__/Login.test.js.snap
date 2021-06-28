@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="fullbody"
+>
+  <div
+    className="loginbody"
+  >
+    <div
+      className="topcontent"
+    >
+      <div
+        className="fitWidth"
+      >
+        <span
+          style={
+            Object {
+              "color": "#4385F4",
+              "fontSize": "20px",
+              "fontWeight": 500,
+            }
+          }
+        >
+          G
+        </span>
+        <span
+          style={
+            Object {
+              "color": "#EA4335",
+              "fontSize": "20px",
+              "fontWeight": 500,
+            }
+          }
+        >
+          o
+        </span>
+        <span
+          style={
+            Object {
+              "color": "#FBBD35",
+              "fontSize": "20px",
+              "fontWeight": 500,
+            }
+          }
+        >
+          o
+        </span>
+        <span
+          style={
+            Object {
+              "color": "#4385F4",
+              "fontSize": "20px",
+              "fontWeight": 500,
+            }
+          }
+        >
+          g
+        </span>
+        <span
+          style={
+            Object {
+              "color": "#4EA853",
+              "fontSize": "20px",
+              "fontWeight": 500,
+            }
+          }
+        >
+          l
+        </span>
+        <span
+          style={
+            Object {
+              "color": "#EA4335",
+              "fontSize": "20px",
+              "fontWeight": 500,
+            }
+          }
+        >
+          e
+        </span>
+      </div>
+      <p
+        className="fonty"
+      >
+         Sign in
+      </p>
+      <div>
+          Use your Google Account 
+      </div>
+      <div
+        className="textfields"
+      >
+        <div
+          className="MuiFormControl-root MuiTextField-root TFwidth MuiFormControl-marginDense"
+          onKeyDown={[Function]}
+        >
+          <label
+            className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined"
+            data-shrink={false}
+            htmlFor="outlined-basic"
+            id="outlined-basic-label"
+          >
+            Email or phone 
+          </label>
+          <div
+            className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+            onClick={[Function]}
+          >
+            <input
+              aria-invalid={false}
+              autoFocus={false}
+              className="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              disabled={false}
+              id="outlined-basic"
+              name="username"
+              onAnimationStart={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              required={false}
+              type="text"
+            />
+            <fieldset
+              aria-hidden={true}
+              className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                className="PrivateNotchedOutline-legendLabelled-3"
+              >
+                <span>
+                  Email or phone 
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div
+          className="MuiFormControl-root MuiTextField-root TFwidth MuiFormControl-marginDense"
+          onKeyDown={[Function]}
+        >
+          <label
+            className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined"
+            data-shrink={false}
+            htmlFor="outlined-basic"
+            id="outlined-basic-label"
+          >
+            Password
+          </label>
+          <div
+            className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+            onClick={[Function]}
+          >
+            <input
+              aria-invalid={false}
+              autoFocus={false}
+              className="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+              disabled={false}
+              id="outlined-basic"
+              name="password"
+              onAnimationStart={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              required={false}
+              type="password"
+            />
+            <fieldset
+              aria-hidden={true}
+              className="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                className="PrivateNotchedOutline-legendLabelled-3"
+              >
+                <span>
+                  Password
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+          
+        </div>
+        <div
+          className="pas"
+        >
+          <input
+            id="radio"
+            onClick={[Function]}
+            type="checkbox"
+            value="Show password"
+          />
+          <label
+            htmlFor="radio"
+          >
+             Show password
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      className="notComp"
+    >
+      Not your computer? Use Guest mode to sign in privately.
+      <br />
+      <a
+        className="link"
+        href="https://support.google.com/chrome/answer/6130773?hl=en-GB"
+      >
+        Learn more
+      </a>
+    </div>
+    <div
+      className="forget"
+    >
+      Forget password?
+    </div>
+    <div
+      className="createaccount"
+      onClick={[Function]}
+    >
+      Create Account
+    </div>
+    <div
+      className="inline__button"
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSizeSmall MuiButton-sizeSmall"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Sign in
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

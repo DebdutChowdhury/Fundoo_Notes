@@ -20,7 +20,7 @@ const noteService = new NoteService();
 
 export default class Icon extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             anchorEl: null,
@@ -39,17 +39,17 @@ export default class Icon extends Component {
         console.log(value);
         let data = {
             isArchived: true,
-            noteIdList: [value.id] 
+            noteIdList: [value.id]
         }
         let token = localStorage.getItem('Token');
         console.log(data);
-        noteService.archieveNote(data,token).then((data) => {
+        noteService.archieveNote(data, token).then((data) => {
             console.log(data);
             window.location.reload();
         })
-        .catch((err) => {
-            console.log("error = " + err);
-        });
+            .catch((err) => {
+                console.log("error = " + err);
+            });
     }
 
     handleClick = (event) => {
@@ -80,10 +80,10 @@ export default class Icon extends Component {
             noteIdList: [value.id]
         }
         console.log(data.noteIdList);
-        noteService.deleteNote(data,token).then((result) => {
+        noteService.deleteNote(data, token).then((result) => {
             console.log(result);
             // window.location.reload();
-            
+
             this.handleClose();
             this.props.getNote()
         }).catch((error) => {
@@ -92,7 +92,7 @@ export default class Icon extends Component {
     }
 
     handleClose = () => {
-        this.setState({anchorEl:null})
+        this.setState({ anchorEl: null })
     }
 
     reminderPop = (anchor) => {
@@ -102,46 +102,46 @@ export default class Icon extends Component {
     deleteForever = (value) => {
         let token = localStorage.getItem("Token");
         let data = {
-            noteIdList:[value.id]
+            noteIdList: [value.id]
         };
-        noteService.deleteForever(data,token).then((data)=> {
+        noteService.deleteForever(data, token).then((data) => {
             console.log("Note Delete: ", data);
             this.props.getTrash();
         })
-        .catch((err) => {
-            console.log(err);
-        })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     restore = (value) => {
         let token = localStorage.getItem("Token");
         let data = {
             isDeleted: false,
-            noteIdList:[value.id],
-            
+            noteIdList: [value.id],
+
         }
         noteService.deleteNote(data, token).then((data) => {
             console.log("Restore Data: ", data);
             this.props.getTrash();
         })
-        .catch((err) => {
-            console.log(err);
-        })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     unArchiveNote = (value) => {
         let token = localStorage.getItem("Token");
         let data = {
-            isArchived:false,
-            noteIdList:[value.id]
+            isArchived: false,
+            noteIdList: [value.id]
         }
         noteService.archieveNote(data, token).then((data) => {
-            console.log("UnArchive Data: ",data);
+            console.log("UnArchive Data: ", data);
             this.props.getArchive();
         })
-        .catch((err) => {
-            console.log(err);
-        })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     getData = (date, time) => {
@@ -149,51 +149,51 @@ export default class Icon extends Component {
     }
 
     render() {
-        const colors = [ ' #d7aefb', '#a7ffeb', '#e8eaed', 
-        '#aecbfa', '#e6c9a8', '#fdcfe8', '#f28b82', '#aecbfa'];
+        const colors = [' #d7aefb', '#a7ffeb', '#e8eaed',
+            '#aecbfa', '#e6c9a8', '#fdcfe8', '#f28b82', '#aecbfa'];
         return (
             <>
-                <div className={this.props.gridView === true ? "gridinlineicons" :"inlineicons"} style={{cursor:"pointer"}}>
+                <div className={this.props.gridView === true ? "gridinlineicons" : "inlineicons"} style={{ cursor: "pointer" }}>
                     <div>
-                        {console.log(this.props.Notes)}
-                        {this.props.Notes.isDeleted===true ? (
+                        {/* {console.log(this.props)} */}
+                        {this.props.isDeleted === true ? (
                             <div >
-                                <DeleteForeverRoundedIcon onClick={(e) => this.deleteForever(this.props.Notes)}/>
-                                <RestoreFromTrashRoundedIcon onClick={(e) => this.restore(this.props.Notes)}/>
+                                <DeleteForeverRoundedIcon onClick={(e) => this.deleteForever(this.props.Notes)} />
+                                <RestoreFromTrashRoundedIcon onClick={(e) => this.restore(this.props.Notes)} />
                             </div>
-                        ):
-                        <div className={this.props.gridView === true ? "gridinlineicons" :"inlineicons"}>
-                   
-                    <ReminderPop getReminder={this.getData}/>
-                    <PersonAddOutlinedIcon/>
-                    
-                    <ColorPalet Notes={this.props.Notes} getColor={this.props.getColor}/>
-                    <AddPhotoAlternateOutlinedIcon/>
+                        ) :
+                            <div className={this.props.gridView === true ? "gridinlineicons" : "inlineicons"}>
 
-                    {this.props.Notes.isArchived===true ? (
-                        <UnarchiveOutlinedIcon onClick={(e) => this.unArchiveNote(this.props.Notes)} />
-                    ): (
-                        <ArchiveOutlinedIcon onClick={(e)=>this.archieveNote(this.props.Notes)}/>
-                    )}
-                    
-                    <MoreVertIcon onClick={(e) => this.handleClick(e)} />
-                    
-                    <Menu 
-                        id="simple-menu"
-                        anchorEl={this.state.anchorEl}
-                        keepMounted
-                        open={Boolean(this.state.anchorEl)}
-                        onClose={this.handleClose}
-                    >
-                        <MenuItem onClick={(e)=> this.deleteNote(e, this.props.Notes)}>Delete Note</MenuItem>
-                        <MenuItem onClose={this.handleClose}>Add Label</MenuItem>
-                        <MenuItem onClose={this.handleClose}>Add Drawing</MenuItem>
-                        <MenuItem onClose={this.handleClose}>Make a Copy</MenuItem>
-                        <MenuItem onClose={this.handleClose}>Show Chackboses</MenuItem>
-                        <MenuItem onClose={this.handleClose}>Copy to Google Docs</MenuItem>
+                                <ReminderPop getReminder={this.getData} />
+                                <PersonAddOutlinedIcon />
 
-                    </Menu>
-                </div>
+                                <ColorPalet Notes={this.props.Notes} getColor={this.props.getColor} />
+                                <AddPhotoAlternateOutlinedIcon />
+
+                                {this.props.isArchived === true ? (
+                                    <UnarchiveOutlinedIcon onClick={(e) => this.unArchiveNote(this.props.Notes)} />
+                                ) : (
+                                    <ArchiveOutlinedIcon onClick={(e) => this.archieveNote(this.props.Notes)} />
+                                )}
+
+                                <MoreVertIcon onClick={(e) => this.handleClick(e)} />
+
+                                <Menu
+                                    id="simple-menu"
+                                    anchorEl={this.state.anchorEl}
+                                    keepMounted
+                                    open={Boolean(this.state.anchorEl)}
+                                    onClose={this.handleClose}
+                                >
+                                    <MenuItem onClick={(e) => this.deleteNote(e, this.props.Notes)}>Delete Note</MenuItem>
+                                    <MenuItem onClose={this.handleClose}>Add Label</MenuItem>
+                                    <MenuItem onClose={this.handleClose}>Add Drawing</MenuItem>
+                                    <MenuItem onClose={this.handleClose}>Make a Copy</MenuItem>
+                                    <MenuItem onClose={this.handleClose}>Show Chackboses</MenuItem>
+                                    <MenuItem onClose={this.handleClose}>Copy to Google Docs</MenuItem>
+
+                                </Menu>
+                            </div>
                         }
                     </div>
 

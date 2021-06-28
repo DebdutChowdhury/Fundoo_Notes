@@ -5,7 +5,7 @@ import { InputBase } from '@material-ui/core'
 import Card from '../Card/Card'
 
 export default function MapData(props) {
-    console.log("MapData grid",props.gridView);
+    // console.log("MapData grid",props.note);
     return (
         <div className={props.gridView === true ? "gridNotess": "notess"}>
         {console.log(props.note)}

@@ -96,7 +96,11 @@ class Dashboard extends Component {
             open: false,
             profile: false,
             selectedRout: 'notes',
-            gridView : false
+            gridView : false,
+            searchView:"",
+            searchElement:[],
+            newData:[],
+            searchNote:[]
         }
     }
 
@@ -140,7 +144,7 @@ class Dashboard extends Component {
 
     rendering =() => {
         if(this.state.selectedRout == 'notes'){
-            return <GetNote gridView={this.state.gridView} render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
+            return <GetNote searchElement={this.state.searchElement} searchNote={this.getDataFromGetNote} gridView={this.state.gridView} render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
         }
         else if (this.state.selectedRout == 'Reminder'){
             return <Reminder  render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
@@ -156,24 +160,68 @@ class Dashboard extends Component {
         }
     }
 
+    searchNote = (value) => {
+        this.setState({searchNote:value})
+        console.log("DashBoard Search Value", value);
+        
+    }
+
     onClickGrid = () =>{
         this.setState({gridView: !this.state.gridView})
         console.log(this.state.gridView);
     }
 
+    searchInput = (data) => {
+        this.setState({searchView:data})
+        console.log("Search data",data);
+        this.filterSearch(data)
+        
+    }
+
+    searchRendering = (data) => {
+        console.log("data in search rendering", data);
+        // this.filterSearch()
+        return <MapData note={data}/>
+    }
+
+    getDataFromGetNote = (data) => {
+        this.setState({searchElement:data})
+        console.log("get data from getNote", data);
+        console.log("SearchView",this.state.searchView);
+    }
+
+    filterSearch = (searchInput) => {
+        console.log(searchInput);
+        var arr = [];
+        this.state.searchElement.filter(data=>data.title.includes(searchInput)).map((searchedData)=>{
+            arr.push(searchedData)
+            console.log("SearchData",searchedData, "arr",arr);
+        })
+        this.setState({newData:arr})
+        console.log("outside arr",arr);
+    }
+
     render() {
         const { classes } = this.props;
         console.log(this.state.open);
+        console.log(this.state.newData);
+        console.log(this.state.searchElement);
         return (
             <div className="root">
+                
                 <CssBaseline />
-                <Appbar rout={this.setRout} gridView={this.state.gridView}
+                <Appbar rout={this.setRout} 
+                    gridView={this.state.gridView}
                     grid={this.onClickGrid}
+                    // searchNote={this.searchNote}
+                    takeInput={this.searchInput}
                 />
                 {this.state.selectedRout}
                 <div>
+
                     {/* <CreateNote /> */}
-                    {this.rendering()}
+                    { this.state.searchView != "" ? this.searchRendering(this.state.newData) : this.rendering()}
+
                     {/* <GetNote /> */}
                     {/* <Archive/> */}
                 </div>
