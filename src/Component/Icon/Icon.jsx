@@ -46,6 +46,7 @@ export default class Icon extends Component {
         noteService.archieveNote(data, token).then((data) => {
             console.log(data);
             window.location.reload();
+            this.props.getArchivedNote()
         })
             .catch((err) => {
                 console.log("error = " + err);
@@ -83,7 +84,7 @@ export default class Icon extends Component {
         noteService.deleteNote(data, token).then((result) => {
             console.log(result);
             // window.location.reload();
-
+            
             this.handleClose();
             this.props.getNote()
         }).catch((error) => {
@@ -106,7 +107,7 @@ export default class Icon extends Component {
         };
         noteService.deleteForever(data, token).then((data) => {
             console.log("Note Delete: ", data);
-            this.props.getTrash();
+            this.props.getDeletedNote();
         })
             .catch((err) => {
                 console.log(err);
@@ -122,7 +123,7 @@ export default class Icon extends Component {
         }
         noteService.deleteNote(data, token).then((data) => {
             console.log("Restore Data: ", data);
-            this.props.getTrash();
+            this.props.getDeletedNote();
         })
             .catch((err) => {
                 console.log(err);
@@ -137,7 +138,7 @@ export default class Icon extends Component {
         }
         noteService.archieveNote(data, token).then((data) => {
             console.log("UnArchive Data: ", data);
-            this.props.getArchive();
+            this.props.getArchivedNote();
         })
             .catch((err) => {
                 console.log(err);
@@ -151,11 +152,12 @@ export default class Icon extends Component {
     render() {
         const colors = [' #d7aefb', '#a7ffeb', '#e8eaed',
             '#aecbfa', '#e6c9a8', '#fdcfe8', '#f28b82', '#aecbfa'];
+            console.log("Delete:",this.props.isDeleted);
         return (
             <>
                 <div className={this.props.gridView === true ? "gridinlineicons" : "inlineicons"} style={{ cursor: "pointer" }}>
                     <div>
-                        {/* {console.log(this.props)} */}
+                        
                         {this.props.isDeleted === true ? (
                             <div >
                                 <DeleteForeverRoundedIcon onClick={(e) => this.deleteForever(this.props.Notes)} />

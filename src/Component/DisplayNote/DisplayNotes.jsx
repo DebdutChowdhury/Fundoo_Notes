@@ -36,36 +36,36 @@ export default class DisplayNotes extends Component {
         console.log(this.state.open);
     };
 
-    handleTitle = (event) => {
-        this.setState({ title: event.target.value })
-    }
+    // handleTitle = (event) => {
+    //     this.setState({ title: event.target.value })
+    // }
 
-    handleDescription = (event) => {
-        this.setState({ description: event.target.value })
-    }
+    // handleDescription = (event) => {
+    //     this.setState({ description: event.target.value })
+    // }
 
-    updateNote = (event) => {
-        event.stopPropagation()
-        let token = localStorage.getItem('Token')
-        let data = {
-            title: this.state.title,
-            description: this.state.description,
-            noteId: this.state.noteId
-        }
-        console.log(data.description);
-        if (data.title !== "" && data.description !== "") {
-            noteService.updateNote(data, token).then((result) => {
-                console.log(result);
-                // this.props.updateNote();
-                this.props.getNote();
-                window.location.reload();
-                { this.handleClose() }
-            })
-                .catch((err) => {
-                    console.log(err);
-                })
-        }
-    }
+    // updateNote = (event) => {
+    //     event.stopPropagation()
+    //     let token = localStorage.getItem('Token')
+    //     let data = {
+    //         title: this.state.title,
+    //         description: this.state.description,
+    //         noteId: this.state.noteId
+    //     }
+    //     console.log(data.description);
+    //     if (data.title !== "" && data.description !== "") {
+    //         noteService.updateNote(data, token).then((result) => {
+    //             console.log(result);
+    //             // this.props.updateNote();
+    //             this.props.getNote();
+    //             window.location.reload();
+    //             { this.handleClose() }
+    //         })
+    //             .catch((err) => {
+    //                 console.log(err);
+    //             })
+    //     }
+    // }
 
     setColor = (colorValue) => {
         this.setState({ color: colorValue })
@@ -77,40 +77,9 @@ export default class DisplayNotes extends Component {
         return (
             <>
                 <div className="notess">
-                    {this.props.render(this.props.NotesArray)}
+                    {this.props.render(this.props.NotesArray, this.props.getNote)}
                 </div>
-                <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                    <div className="dialogbox">
-                        <InputBase
-                            defaultValue=""
-                            multiline
-                            className="inputbas"
-                            placeholder=" Title"
-                            fullWidth
-                            onChange={this.handleTitle}
-                            defaultValue={this.state.title}
-                            inputProps={{ 'aria-label': 'Title ' }}
-                        />
-
-                        <InputBase
-                            defaultValue=""
-                            multiline
-                            className="inputbas"
-                            placeholder=" Title"
-                            fullWidth
-                            onChange={this.handleDescription}
-                            defaultValue={this.state.description}
-                            inputProps={{ 'aria-label': 'Title ' }}
-                        />
-                        <div className="enclose">
-                            <Icon />
-                            <div className="inp">
-                                <input type="button" onClick={(e) => this.updateNote(e)} value="close" />
-                            </div>
-                        </div>
-                    </div>
-
-                </Dialog>
+                
             </>
         )
     }

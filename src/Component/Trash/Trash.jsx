@@ -36,7 +36,8 @@ export default class Trash extends Component {
         return (
             <>
                 <div className="notesss">
-                    {this.props.render(this.state.notes)}
+                    {this.props.render(this.state.notes, this.note)}
+                    {/* <Icon trash={this.state.trash} getTrash={this.note}/> */}
                 </div>
             </>
         )

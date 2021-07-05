@@ -7,6 +7,7 @@ import Card from '../Card/Card'
 export default function MapData(props) {
     // console.log("MapData grid",props.note);
     return (
+        // <div className="search-Note">
         <div className={props.gridView === true ? "gridNotess": "notess"}>
         {console.log(props.note)}
         {
@@ -18,12 +19,16 @@ export default function MapData(props) {
                                         value={value}
                                         style={style}
                                         gridView={props.gridView}
+                                        getArchivedNote={props.getArchivedNote}
+                                        getDeletedNote={props.getDeletedNote}
+                                        getNote={props.getNote}
                                     />
                                 </div> 
                             )
                         })
                     }
         </div>
+        // </div>
     )
 }
 //  {/* {props.NotesArray.map((value, index) => {

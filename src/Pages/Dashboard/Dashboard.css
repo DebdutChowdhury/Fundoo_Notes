@@ -147,11 +147,13 @@ background-color: red;
   margin-top: 4vh;
   height: auto;
   display: flex;
-  max-width: 100%;
+  max-width: 99%;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 1%;
+  padding-left: 27px;
+  padding-right: 46px;
 }
 .notesss{
   margin-top: 4vh;
@@ -164,6 +166,19 @@ background-color: red;
   padding: 1%;
   margin-top: 23%;
 }
+
+.search-Note{
+  margin-top: 70%;
+  margin-left: 10%;
+  height: auto;
+  display: flex;
+  max-width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 1%;
+}
+
 .notebox{
   width: 240px;
   max-width: 240px;
@@ -248,14 +263,14 @@ background-color: red;
   border:1px solid #dadce0;
   box-shadow: 0 10px 10px rgba(92,99,105,.2);
   margin-left: 350px;
-  margin-top: 100px;
+  margin-top: 115px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   opacity: 0.7;
 }
 .takenote input{
-  height: 40px;
+  height: 44px;
   width: 400px;
   border:none;
   margin-left: 10px;
@@ -270,7 +285,7 @@ background-color: red;
   border:1px solid #dadce0;
   box-shadow: 0 10px 25px rgba(92,99,105,.2);
   margin-left: 350px;
-  margin-top: 100px;
+  margin-top: 115px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

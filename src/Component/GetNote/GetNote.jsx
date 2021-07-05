@@ -26,12 +26,13 @@ export default class GetNote extends Component {
         let token = localStorage.getItem('Token')
         console.log('called');
         noteService.getNote(token).then((result) => {
-            this.setState({notes:result.data.data.data})
+            let getNote = [];
+            result.data.data.data.filter(data=>data.isDeleted===false && data.isArchived === false).map((value)=>{
+                getNote.push(value)
+            })
+            this.setState({notes:getNote})
             console.log(this.state.notes);
-            // let arr = [];
-            // arr.push(this.state.notes)
             this.onTrigerSearch(this.state.notes)
-            // this.props.searchNote(this.state.notes)
         })
         .catch((err)=>{
             console.log(err);

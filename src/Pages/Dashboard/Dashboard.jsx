@@ -144,16 +144,16 @@ class Dashboard extends Component {
 
     rendering =() => {
         if(this.state.selectedRout == 'notes'){
-            return <GetNote searchElement={this.state.searchElement} searchNote={this.getDataFromGetNote} gridView={this.state.gridView} render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
+            return <GetNote searchElement={this.state.searchElement} searchNote={this.getDataFromGetNote} gridView={this.state.gridView} render = { (data,method) => <MapData gridView={this.state.gridView} note={data} getNote={method}/>}/>
         }
         else if (this.state.selectedRout == 'Reminder'){
-            return <Reminder  render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
+            return <Reminder  render = { (data,method) => <MapData gridView={this.state.gridView} note={data} getReminderNote={method}/>}/>
         }
         else if (this.state.selectedRout == 'Archive'){
-            return <Archive  render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
+            return <Archive  render = { (data,method) => <MapData gridView={this.state.gridView} note={data} getArchivedNote={method}/>}/>
         }
         else if (this.state.selectedRout == 'Trash'){
-            return <Trash  render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>
+            return <Trash  render = { (data,method) => <MapData gridView={this.state.gridView} note={data} getDeletedNote={method} />}/>
         }
         else{
             return <GetNote  render = { data => <MapData gridView={this.state.gridView} note={data}/>}/>

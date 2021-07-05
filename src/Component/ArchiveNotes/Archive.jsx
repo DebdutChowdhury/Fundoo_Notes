@@ -35,7 +35,8 @@ export default class Archive extends Component {
         return (
             <>
                 <div className="notesss">
-                    {this.props.render(this.state.notes)}
+                    {this.props.render(this.state.notes, this.note)}
+                    {/* <Icon archive={this.state.archive} getArchive={this.note}/> */}
                 </div>
             </>
         )
